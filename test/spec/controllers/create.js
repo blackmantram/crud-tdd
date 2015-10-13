@@ -21,7 +21,8 @@ describe('Controller: Create', function () {
 
   function createOne(id, name)
   {
-    scope.create(id, name);
+    scope.item = {id:id, name:name};
+    scope.create();
   }
 
   function getFirst()
@@ -46,16 +47,6 @@ describe('Controller: Create', function () {
     expect(scope.items.length).toBe(2);
   });
 
-  it('should create items with id', function () {
-    createOne();
-    expect(getNext().id).toBeDefined();
-  });
-
-  it('should create items with name', function () {
-    createOne();
-    expect(getNext().name).toBeDefined();
-  });
-
   it('should receive an id and a name from user', function () {
     function createAndAssert(id, name){
       createOne(id, name);
@@ -66,6 +57,11 @@ describe('Controller: Create', function () {
     
     createAndAssert(1, 'a name');
     createAndAssert(2, 'another name');
+  });
+
+  it('should clean model after create', function () {
+    createOne(1, 'my name');
+    expect(scope.item).toEqual({});
   });
   
 });

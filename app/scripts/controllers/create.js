@@ -4,17 +4,15 @@
  * @ngdoc function
  * @name crudTddApp.controller:AboutCtrl
  * @description
- * # AboutCtrl
+ * # CreateController
  * Controller of the crudTddApp
  */
 angular.module('crudTddApp')
   .controller('CreateController', function ($scope) {
+  	$scope.item = {};
   	$scope.items = Array();
-  	$scope.create = function(id, name) {
-  		if (id == undefined)
-	  		id = 0;
-		if (name == undefined)
-	  		name = '';
-		$scope.items.push({id:id, name:name});
+  	$scope.create = function() {
+  		$scope.items.push($scope.item);
+  		$scope.item = {};
 	};
   });

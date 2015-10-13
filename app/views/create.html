@@ -1,8 +1,9 @@
 <div>
-	id: <input type="text" />
-	name: <input type="text" />
+	id: <input type='text' ng-model='item.id' />
+	name: <input type='text' ng-model='item.name' />
+	<input ng-click='create()' type='button' value='insert'>
 </div>
 <div>
 	<p class='col-md-6'>id</p><p class='col-md'>name</p>
-	<div><p class='col-md-6'>123123213</p><p class='col-md'>sasassasaas</p></div>
+	<div ng-repeat="item in items"><p class='col-md-6'>{{item.id}}</p><p class='col-md'>{{item.name}}</p></div>
 <div>

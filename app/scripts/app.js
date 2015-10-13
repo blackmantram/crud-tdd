@@ -25,10 +25,11 @@ angular
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
       })
+      .when('/create', {
+        templateUrl: 'views/create.html',
+        controller: 'CreateController'
+      })
       .otherwise({
         redirectTo: '/'
-      })
-      .when('/create', {
-        templateUrl: 'views/create.html'
       });
   });
