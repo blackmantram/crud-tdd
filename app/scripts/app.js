@@ -27,8 +27,8 @@ angular
       })
       .otherwise({
         redirectTo: '/'
-      });
+      })
       .when('/create', {
         templateUrl: 'views/create.html'
-      })
+      });
   });
