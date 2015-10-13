@@ -3,20 +3,17 @@
 describe('Controller: Create', function () {
   
   var CreateController;
+  var scope;
   var next = -1;
 
-  beforeEach(function(){
-    CreateController = {
-      items: Array(),
-      create: function(id, name) {
-        if (id == undefined)
-          id = 0;
-        if (name == undefined)
-          name = '';
-        this.items.push({id:id, name:name});
-      }
-    };
-  });
+  beforeEach(module('crudTddApp'));
+
+  beforeEach(inject(function ($controller, $rootScope) {
+    scope = $rootScope.$new();
+    CreateController = $controller('CreateController', {
+      $scope: scope
+    });
+  }));
 
   beforeEach(function(){
     next = -1
@@ -24,29 +21,29 @@ describe('Controller: Create', function () {
 
   function createOne(id, name)
   {
-    CreateController.create(id, name);
+    scope.create(id, name);
   }
 
   function getFirst()
   {
-    return CreateController.items[0];
+    return scope.items[0];
   }
 
   function getSecond()
   {
-    return CreateController.items[1];
+    return scope.items[1];
   }
 
   function getNext()
   {
     next++;
-    return CreateController.items[next];
+    return scope.items[next];
   }
 
   it('should create multiple items', function () {
     createOne();
     createOne();
-    expect(CreateController.items.length).toBe(2);
+    expect(scope.items.length).toBe(2);
   });
 
   it('should create items with id', function () {
