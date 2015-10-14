@@ -26,8 +26,8 @@ angular
         controller: 'AboutCtrl'
       })
       .when('/create', {
-        templateUrl: 'views/create.html',
-        controller: 'CreateController'
+        templateUrl: 'views/crud.html',
+        controller: 'CRUDController'
       })
       .otherwise({
         redirectTo: '/'

@@ -2,7 +2,7 @@
 
 describe('Controller: Create', function () {
   
-  var CreateController;
+  var CRUDController;
   var scope;
   var next = -1;
 
@@ -10,7 +10,7 @@ describe('Controller: Create', function () {
 
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    CreateController = $controller('CreateController', {
+    CRUDController = $controller('CRUDController', {
       $scope: scope
     });
   }));
@@ -23,16 +23,6 @@ describe('Controller: Create', function () {
   {
     scope.item = {id:id, name:name};
     scope.create();
-  }
-
-  function getFirst()
-  {
-    return scope.items[0];
-  }
-
-  function getSecond()
-  {
-    return scope.items[1];
   }
 
   function getNext()
@@ -62,6 +52,22 @@ describe('Controller: Create', function () {
   it('should clean model after create', function () {
     createOne(1, 'my name');
     expect(scope.item).toEqual({});
+  });
+
+  it('should delete an item', function () {
+    createOne(1, 'a name');
+    scope.delete(1);
+    expect(scope.items.length).toBe(0);
+  });
+
+  it('should be able to update', function () {
+    expect(scope.update).toBeDefined();
+  });
+
+  it('should update an item', function () {
+    createOne(1, 'a name');
+    scope.update(1, 'my name');
+    expect(getNext().name).toBe('my name');
   });
   
 });
