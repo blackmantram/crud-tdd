@@ -60,14 +60,22 @@ describe('Controller: Create', function () {
     expect(scope.items.length).toBe(0);
   });
 
-  it('should be able to update', function () {
-    expect(scope.update).toBeDefined();
-  });
-
   it('should update an item', function () {
     createOne(1, 'a name');
     scope.update(1, 'my name');
     expect(getNext().name).toBe('my name');
+  });
+
+  it('should set id of editing item when edit starts', function () {
+    scope.edit(1);
+    expect(scope.editingId).toBe(1);
+  });
+
+  it('should be able to finish editing', function () {
+    createOne(1, 'a name');
+    scope.edit(1);
+    scope.update(1, 'another name');
+    expect(scope.editingId).toBe(0);
   });
   
 });

@@ -4,6 +4,11 @@
 	<input ng-click='create()' type='button' value='insert'>
 </div>
 <div>
-	<p class='col-md-6'>id</p><p class='col-md'>name</p>
-	<div ng-repeat="item in items"><p class='col-md-6'>{{item.id}}</p><p class='col-md'>{{item.name}}</p></div>
+	<p class='col-md-4'>id</p><p class='col-m-6'>name</p>
+	<div ng-repeat="item in items">
+		<p class='col-md-4'>{{item.id}}</p>
+		<p ng-show="editingId == 0 || editingId != item.id" ng-click="edit({{item.id}})" class='col-md-6'>{{item.name}}</p>
+		<div ng-show="editingId == item.id" class='col-md-6' ><input ng-model="editText" ng-blur="update(item.id, editText)"></div>
+		<a class='col-md-2' ng-click='delete({{item.id}})'>X</a>
+	</div>
 <div>

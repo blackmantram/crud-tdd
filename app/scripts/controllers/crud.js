@@ -11,6 +11,7 @@ angular.module('crudTddApp')
   .controller('CRUDController', function ($scope) {
   	$scope.item = {};
   	$scope.items = Array();
+  	$scope.editingId = 0;
   	$scope.create = function() {
   		$scope.items.push($scope.item);
   		$scope.item = {};
@@ -31,8 +32,12 @@ angular.module('crudTddApp')
 			if ($scope.items[i].id == id)
 			{
 				$scope.items[i].name = name;
+				$scope.editingId = 0;
 				return;
 			}
 		}
+	}
+	$scope.edit = function(id){
+		$scope.editingId = id;
 	}
   });
